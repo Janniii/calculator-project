@@ -78,57 +78,66 @@ buttons.forEach(button => button.addEventListener("click", iWasClicked));
 let quickTest = 0;
 
 function iWasClicked() {
+    /*console.log(Number(this.id));*/
+
 
     if ((this.id >= 0 && this.id <= 9) || (this.id == "." && equation.split(".").length-1 == 0)) {
     equation += this.id;
     display.textContent = equation;
-    console.log("hello");
-    console.log(equation);
   }
 
-     
+     else if (this.id == "=") {
+       if (currentOperand == `` && quickTest == 0) {
+         display.textContent = equation;
+         quickTest = 1;
+       }
+
+         else if (currentOperand != ``) {
+           num2 = Number(equation);
+           equation = ``;
+           num1 = operate(num1, num2, currentOperand)
+           display.textContent = num1;
+           firstOperand = ``;
+           secondOperand = ``;
+           
+         }
+     }
 
      else if (first == 0 && (this.id == "+" || this.id == "-" || this.id == "*" || this.id == "/")) {
-      
-      if (firstNum == 0) {
-         num1 = Number(equation);
-        }
-      equation = ``;
-      first = 1;
-      firstOperand = this.id;
+       if (equation != ``) {
+       num1 = Number(equation);
+      }
+       equation = ``;
+       first = 1;
+       firstOperand = this.id;
+       currentOperand = this.id;
      }
 
      else if ((equation.length >= 1 && first == 1) && (this.id == "+" || this.id == "-" || this.id == "*" || this.id == "/")) {
 
+      if (firstOperand != ``) {
+        secondOperand = this.id;
+      }
+
+      if (firstOperand == ``) {
+        firstOperand = this.id;
+      }
       
       num2 = Number(equation);
-      console.log(num2, "hi");
       equation = ``;
-      secondOperand = this.id;
+      //secondOperand = this.id;
 
       num1 = operate(num1, num2, firstOperand);
       display.textContent = num1;
+      //console.log(num1);
+      currentOperand = this.id;
       firstOperand = secondOperand;
 
     }
 
-    else if (this.id == "=") {
-      num2 = Number(equation);
-      console.log(equation);
-      console.log("hello");
-      console.log(num1, num2, firstOperand);
-      num1 = operate(num1, num2, firstOperand);
-      console.log(num1);
-      display.textContent = num1;
-      first = 0;
-      firstNum = 1;
-      firstOperand = ``;
-      secondOperand = ``;
-    }
-
 }
 
-let firstNum = 0;
+let currentOperand = ``;
 let firstOperand = ``;
 let secondOperand = ``;
 let first = 0;

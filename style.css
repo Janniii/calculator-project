@@ -7,3 +7,36 @@ body {
     gap: 5px;
     
 }
+
+
+#container {
+    width: 500px;
+    height: 600px;
+    display: flex;
+    background-color: red;
+    flex-direction: column;
+    align-self: center;
+    justify-content: flex-end;
+    
+}
+
+
+#display-container {
+    width: 500px;
+    height: 200px;
+    background-color: gold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#display {
+    width: 460px;
+    height: 150px;
+    background-color: grey;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+
+}
