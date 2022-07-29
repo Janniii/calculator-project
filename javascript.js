@@ -135,6 +135,13 @@ function iWasClicked() {
 
     else if (this.id == "=") {
 
+      console.log(currentOperand, "do it now", equation);
+
+      if (currentOperand == ``) {
+        num1 = Number(equation);
+      }
+
+
 
       
       if (equal == 1) {
@@ -154,7 +161,7 @@ function iWasClicked() {
       
 
 
-      else {
+      else if (currentOperand != ``) {
       num2 = Number(equation);
       console.log(equation);
       console.log("hello");
@@ -177,7 +184,7 @@ function iWasClicked() {
 }
 
 
-let num3 = 0;
+let firstEqual = 0;
 let equal = 0;
 let currentOperand = ``;
 let firstNum = 0;
@@ -186,6 +193,7 @@ let secondOperand = ``;
 let first = 0;
 let num1 = 0;
 let num2 = 0;
+let num3 = 0;
 let result = ``;
 let current = ``;
 let currentResult = ``;
