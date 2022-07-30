@@ -85,8 +85,6 @@ function iWasClicked() {
     if ((this.id >= 0 && this.id <= 9) || (this.id == "." && equation.split(".").length-1 == 0)) {
     equation += this.id;
     display.textContent = equation;
-    console.log("hello");
-    console.log(equation);
     equal = 0;
   }
 
@@ -115,17 +113,12 @@ function iWasClicked() {
 
      else if ((equation.length >= 1 && first == 1) && (this.id == "+" || this.id == "-" || this.id == "*" || this.id == "/")) {
 
-      console.log("ACTIVATE ME PLEASE");
-
-
       num2 = Number(equation);
-      console.log(num2, "hi");
       equation = ``;
       secondOperand = this.id;
 
       num1 = operate(num1, num2, firstOperand);
       num3 = num1;
-      console.log("IM NUM 3 YOYOYO");
       display.textContent = num1;
       firstOperand = secondOperand;
       currentOperand = this.id;
@@ -134,8 +127,6 @@ function iWasClicked() {
     }
 
     else if (this.id == "=") {
-
-      console.log(currentOperand, "do it now", equation);
 
       if (currentOperand == ``) {
         num1 = Number(equation);
@@ -147,7 +138,6 @@ function iWasClicked() {
       if (equal == 1) {
         num1 = operate(num1, num2, currentOperand);
         display.textContent = num1;
-        console.log("TEEEEEEEEEST");
 
       }
 
@@ -155,19 +145,13 @@ function iWasClicked() {
         num1 = operate(num1, num3, currentOperand);
 
         display.textContent = num1;
-        console.log("AAAAAAAAAAAAAAAAa");
-        console.log(num1, num2, num3, currentOperand);
       }
       
 
 
       else if (currentOperand != ``) {
       num2 = Number(equation);
-      console.log(equation);
-      console.log("hello");
-      console.log(num1, num2, firstOperand);
       num1 = operate(num1, num2, firstOperand);
-      console.log(num1);
       display.textContent = num1;
       first = 0;
       firstNum = 1;
@@ -175,11 +159,8 @@ function iWasClicked() {
       secondOperand = ``;
       equation = ``;
       equal = 1;
-      console.log("BBBBBBBBBBBBBBBBBBB");
     }
     }
-  
-    console.log("HELLO THERE YO,", equation, num1, num2, num3);
 
 }
 
@@ -207,14 +188,6 @@ display.setAttribute("style", "font-size: 30px;")
 
 
 
-
-
-
-
-console.log(typeof buttons);
-
-
-
 buttons.forEach(button => {
   if (button.id == "=" || button.id == "+" || button.id == "-" || button.id == "*" || button.id == "/") {
     button.style.backgroundColor = "lightgrey";
@@ -222,33 +195,6 @@ buttons.forEach(button => {
     button.style.fontSize = "25px";
   }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
