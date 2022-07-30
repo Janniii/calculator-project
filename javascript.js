@@ -205,13 +205,41 @@ function iWasClicked() {
   }
 
   else if (this.id == "+/-" && equation != ``) {
+
+    if (equation > 0) {
     equation = -equation;
     display.textContent = equation;
+    }
+
+      else if (equation <= 0) {
+        equation = Math.abs(equation);
+        display.textContent = equation;
+      }
   }
+
+
+  else if (this.id == "+/-" && equation == ``) {
+
+    if (num1 > 0) {
+    num1 = -num1;
+    display.textContent = num1;
+    }
+
+      else if (num1 <= 0) {
+        num1 = Math.abs(num1);
+        display.textContent = num1;
+      }
+  }
+
 
   else if (this.id == "%" && equation != ``) {
     equation = equation / 100;
     display.textContent = equation;
+  }
+
+  else if (this.id == "%" && equation == ``) {
+    num1 = num1 / 100;
+    display.textContent = num1;
   }
 
   else if (this.id == "NM") {
@@ -304,25 +332,42 @@ function operate(a, b, operand) {
 
 
 const rows = document.querySelectorAll(".row");
+const displayContainer = document.querySelector("#display-container");
+
 
 function activateNightMode() {
   if (nmToggle == 0) {
+
+
+    container.style.backgroundColor = "black";
+    container.style.borderColor = "hsl(180, 7%, 51%)";
+    displayContainer.style.backgroundColor = "silver"; 
+    display.style.backgroundColor = "black";
+    display.style.borderColor = "hsl(180, 7%, 51%)";
+    display.style.color = "white";
+
+
+    columnDivs.forEach(col => col.style.backgroundColor = "silver");
+
+
     rows.forEach(row => {
     row.style.backgroundColor = "black";
-    row.style.borderColor = "gold";
+    row.style.borderColor = "hsl(180, 7%, 51%)";
     
   });
 
     buttons.forEach(button => {
+      button.style.color = "white";
       if (button.id == "=" || button.id == "+" || button.id == "-" || button.id == "*" || button.id == "/") {
-        button.style.backgroundColor = "lightgrey";
-        button.style.color = "teal";
+        //button.style.backgroundColor = "lightgrey";
+        button.style.backgroundColor = "grey";
+        button.style.color = "white";
         button.style.fontSize = "25px";
       }
     
       else if (button.id == "AC" || button.id == "+/-" || button.id == "%" || button.id == "NM") {
-        button.style.backgroundColor = "rgba(180, 180, 180, 0.25)";
-        button.style.color = "SteelBlue";
+        button.style.backgroundColor = "teal";
+        button.style.color = "white";
         button.style.fontSize = "20px";
     }});
 
@@ -331,12 +376,27 @@ function activateNightMode() {
   
 
     else if (nmToggle == 1) {
+
+      container.style.backgroundColor = "white";
+      container.style.borderColor = "teal";
+      displayContainer.style.backgroundColor = "white";
+      display.style.backgroundColor = "grey";
+      display.style.borderColor = "teal";
+      display.style.color = "black";
+
+
+      columnDivs.forEach(col => col.style.backgroundColor = "white");
+
+
+
+
       rows.forEach(row => {
       row.style.backgroundColor = "grey";
       row.style.borderColor = "teal";
       });
 
       buttons.forEach(button => {
+        button.style.color = "black";
         if (button.id == "=" || button.id == "+" || button.id == "-" || button.id == "*" || button.id == "/") {
           button.style.backgroundColor = "lightgrey";
           button.style.color = "teal";
@@ -344,6 +404,7 @@ function activateNightMode() {
         }
       
         else if (button.id == "AC" || button.id == "+/-" || button.id == "%" || button.id == "NM") {
+          //button.style.backgroundColor = "teal";
           button.style.backgroundColor = "rgba(180, 180, 180, 0.25)";
           button.style.color = "SteelBlue";
           button.style.fontSize = "20px";
