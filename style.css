@@ -10,7 +10,8 @@ body {
 
 
 #container {
-    width: 500px;
+    /*width: 500px*/
+    width: 450px;
     height: 600px;
     display: flex;
     background-color: white;
@@ -26,7 +27,8 @@ body {
 
 
 #display-container {
-    width: 500px;
+    /*width: 500px*/
+    width: 450px;
     height: 200px;
     background-color: white;
     display: flex;
@@ -35,7 +37,8 @@ body {
 }
 
 #display {
-    width: 460px;
+    /*width: 460px*/
+    width: 410px;
     height: 150px;
     background-color: grey;
     display: flex;

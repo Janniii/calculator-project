@@ -4,9 +4,9 @@
 const container = document.querySelector("#container");
 
 
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i < 5; i++) {
     const columnDiv = document.createElement("div");
-    columnDiv.setAttribute("style", `background-color: white; height: 100px; display: flex;`)
+    columnDiv.setAttribute("style", `background-color: white; height: 80px; display: flex;`)
     columnDiv.classList.add("column");
     container.appendChild(columnDiv)
 }
@@ -15,15 +15,40 @@ for (let i = 0; i < 4; i++) {
 const columnDivs = document.querySelectorAll(".column");
 
 
-let number = 1;
+let number = -3;
 columnDivs.forEach(col => {
     for (let i = 0; i < 4; i++) {
         const row = document.createElement("button");
-        row.setAttribute("style", `background-color: grey; height: 100px; width: ${container.clientWidth / 4}px; border-style: solid transparent; border-color: teal; border-radius: 10px; font-size: 20px; border-width: 2.5px;`)
+        row.setAttribute("style", `background-color: grey; height: 80px; width: ${container.clientWidth / 4}px; border-style: solid transparent; border-color: teal; border-radius: 10px; font-size: 20px; border-width: 2.5px;`)
         row.classList.add("row")
         col.appendChild(row)
 
-        if (i < 3 && number < 10) {
+        if (number == -3) {
+          row.textContent = "AC";
+          row.id = "AC";
+          number++;
+        }
+
+        else if (number == -2) {
+          row.textContent = "+/-";
+          row.id = "+/-";
+          number++
+        }
+
+        else if (number == -1) {
+          row.textContent = "%";
+          row.id = "%";
+          number++
+        }
+
+        else if (number == 0) {
+          row.textContent = "NM";
+          row.id = "NM";
+          number++
+        }
+
+
+        else if (i < 3 && number < 10) {
             row.textContent = number
             row.id = number;
             number++;
@@ -162,9 +187,41 @@ function iWasClicked() {
     }
     }
 
+
+
+
+  else if (this.id == "AC") {
+    num1 = 0;
+    num2 = 0;
+    num3 = 0;
+    equation == ``;
+    firstOperand = ``;
+    secondOperand = ``;
+    equal = 0;
+    first = 0;
+    firstNum = 0;
+    currentOperand = ``;
+    display.textContent = 0;
+  }
+
+  else if (this.id == "+/-" && equation != ``) {
+    equation = -equation;
+    display.textContent = equation;
+  }
+
+  else if (this.id == "%" && equation != ``) {
+    equation = equation / 100;
+    display.textContent = equation;
+  }
+
+  else if (this.id == "NM") {
+    activateNightMode();
+
+  }
+
 }
 
-
+let nmToggle = 0;
 let firstEqual = 0;
 let equal = 0;
 let currentOperand = ``;
@@ -184,6 +241,7 @@ let equation = ``;
 
 const display = document.querySelector("#display");
 display.setAttribute("style", "font-size: 30px;")
+display.textContent = 0;
 
 
 
@@ -194,7 +252,12 @@ buttons.forEach(button => {
     button.style.color = "teal";
     button.style.fontSize = "25px";
   }
-})
+
+  else if (button.id == "AC" || button.id == "+/-" || button.id == "%" || button.id == "NM") {
+    button.style.backgroundColor = "rgba(180, 180, 180, 0.25)";
+    button.style.color = "SteelBlue";
+    button.style.fontSize = "20px";
+}});
 
 
 
@@ -234,6 +297,59 @@ function operate(a, b, operand) {
         case "/":
           return divide(a, b);
           
+    }
+
+}
+
+
+
+const rows = document.querySelectorAll(".row");
+
+function activateNightMode() {
+  if (nmToggle == 0) {
+    rows.forEach(row => {
+    row.style.backgroundColor = "black";
+    row.style.borderColor = "gold";
+    
+  });
+
+    buttons.forEach(button => {
+      if (button.id == "=" || button.id == "+" || button.id == "-" || button.id == "*" || button.id == "/") {
+        button.style.backgroundColor = "lightgrey";
+        button.style.color = "teal";
+        button.style.fontSize = "25px";
+      }
+    
+      else if (button.id == "AC" || button.id == "+/-" || button.id == "%" || button.id == "NM") {
+        button.style.backgroundColor = "rgba(180, 180, 180, 0.25)";
+        button.style.color = "SteelBlue";
+        button.style.fontSize = "20px";
+    }});
+
+    nmToggle = 1;
+  }
+  
+
+    else if (nmToggle == 1) {
+      rows.forEach(row => {
+      row.style.backgroundColor = "grey";
+      row.style.borderColor = "teal";
+      });
+
+      buttons.forEach(button => {
+        if (button.id == "=" || button.id == "+" || button.id == "-" || button.id == "*" || button.id == "/") {
+          button.style.backgroundColor = "lightgrey";
+          button.style.color = "teal";
+          button.style.fontSize = "25px";
+        }
+      
+        else if (button.id == "AC" || button.id == "+/-" || button.id == "%" || button.id == "NM") {
+          button.style.backgroundColor = "rgba(180, 180, 180, 0.25)";
+          button.style.color = "SteelBlue";
+          button.style.fontSize = "20px";
+      }});
+
+      nmToggle = 0;
     }
 
 }
