@@ -211,9 +211,17 @@ display.setAttribute("style", "font-size: 30px;")
 
 
 
+console.log(typeof buttons);
 
 
 
+buttons.forEach(button => {
+  if (button.id == "=" || button.id == "+" || button.id == "-" || button.id == "*" || button.id == "/") {
+    button.style.backgroundColor = "lightgrey";
+    button.style.color = "teal";
+    button.style.fontSize = "25px";
+  }
+})
 
 
 
