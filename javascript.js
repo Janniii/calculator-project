@@ -682,6 +682,19 @@ window.addEventListener("keydown", (e) => {
     nmButton.click();
   }
 
+  else if (e.keyCode == 76) {
+
+    if (container.className != "containerLight") {
+      light2.classList.add("on2")
+      container.classList.add("containerLight");
+    }
+
+    else {
+      container.classList.remove("containerLight");
+      light2.classList.remove("on2")
+    }
+  }
+
   else if (e.keyCode == 82) {
     intervalToggle++;
 
@@ -740,6 +753,7 @@ this.style.backgroundColor = selectionTrail;
 
 
 const light = document.querySelector(".light");
+const light2 = document.querySelector(".light2");
 
 
 let redValue = Math.floor(Math.random() * 256);

@@ -149,3 +149,33 @@ body {
     border-color: red;
     box-shadow: 0 0 1rem red;
 }
+
+
+.light2 {
+    width: 15px;
+    height: 15px;
+    /*margin-top: 170px;*/
+    background-color: #585858;
+    margin-left: -370px;
+    margin-bottom: -15px;
+    border-radius: 90px;
+}
+
+.on2 {
+    background-color: gold;
+    transform: scale(1.02);
+    border-color: gold;
+    box-shadow: 0 0 1rem gold;
+}
+
+
+
+
+
+.containerLight {
+    background-color: gold;
+    transform: scale(1.00);
+    border-color: gold;
+    box-shadow: 0 0 5.5rem gold;
+
+}
