@@ -1,6 +1,5 @@
 
-
-
+const bodyColor = document.querySelector("body");
 const container = document.querySelector("#container");
 
 
@@ -42,8 +41,10 @@ columnDivs.forEach(col => {
         }
 
         else if (number == 0) {
-          row.textContent = "NM";
+          // row.textContent = "NM";
           row.id = "NM";
+
+          addMoon(row); 
           number++
         }
 
@@ -96,26 +97,73 @@ columnDivs.forEach(col => {
 //container.setAttribute("style", "gap: 5px;")
 
 
+
 const buttons = document.querySelectorAll("button");
+const operatorBox = document.querySelector(".box");
 
 
 buttons.forEach(button => button.addEventListener("click", iWasClicked));
 
-
-let quickTest = 0;
-
 function iWasClicked() {
+  console.log(this.id);
+
+  if (enterBug == 1 && enterBugTwo == 1) {
+    enterBug = 0;
+    enterBugTwo = 0;
+    return
+  }
 
 
     if ((this.id >= 0 && this.id <= 9) || (this.id == "." && equation.split(".").length-1 == 0)) {
+
+      if (equalToggle == 1) {
+
+        num1 = 0;
+        num2 = 0;
+        num3 = 0;
+        firstNum = 0;
+        prevChoice = document.getElementById(currentOperand);
+        prevChoice.classList.remove("select");
+        currentOperand = ``;
+        operatorBox.textContent = currentOperand;
+
+        /*
+        if (currentOperand == ``  && this.id != currentOperand) {
+          prevChoice = document.getElementById(currentOperand);
+          prevChoice.classList.remove("select");
+        }
+        */
+
+
+      }
+
+
     equation += this.id;
-    display.textContent = equation;
+
+    if (this.id == ".") {
+      display.textContent = equation;
+
+    }
+
+    if (this.id != ".") {
+      display.textContent = Number(equation);
+    }
     equal = 0;
+    equalToggle = 0;
   }
 
      
 
      else if (first == 0 && (this.id == "+" || this.id == "-" || this.id == "*" || this.id == "/")) {
+       if (currentOperand != ``  && this.id != currentOperand) {
+         prevChoice = document.getElementById(currentOperand);
+         prevChoice.classList.remove("select");
+         
+       }
+
+
+       this.classList.add("select");
+       equalToggle = 0;
       
       if (firstNum == 0) {
          num1 = Number(equation);
@@ -124,19 +172,38 @@ function iWasClicked() {
       first = 1;
       firstOperand = this.id;
       currentOperand = this.id;
+      operatorBox.textContent = currentOperand;
       equal = 0;
       num3 = num1;
      }
 
      else if ((equation.length == 0 && first == 1) && (this.id == "+" || this.id == "-" || this.id == "*" || this.id == "/")) {
+       if (currentOperand != ``  && this.id != currentOperand) {
+         prevChoice = document.getElementById(currentOperand);
+         prevChoice.classList.remove("select");
+        
+      }
+
+       this.classList.add("select");
+       equalToggle = 0;
+       
        firstOperand = this.id
        currentOperand = this.id;
+       operatorBox.textContent = currentOperand;
        equal = 0;
        num3 = num1;
 
       }
 
      else if ((equation.length >= 1 && first == 1) && (this.id == "+" || this.id == "-" || this.id == "*" || this.id == "/")) {
+       if (currentOperand != ``  && this.id != currentOperand) {
+         prevChoice = document.getElementById(currentOperand);
+         prevChoice.classList.remove("select");
+       }
+
+       
+       this.classList.add("select");
+       equalToggle = 0;
 
       num2 = Number(equation);
       equation = ``;
@@ -147,11 +214,13 @@ function iWasClicked() {
       display.textContent = num1;
       firstOperand = secondOperand;
       currentOperand = this.id;
+      operatorBox.textContent = currentOperand;
       equal = 0;
 
     }
 
     else if (this.id == "=") {
+      equalToggle = 1;
 
       if (currentOperand == ``) {
         num1 = Number(equation);
@@ -191,20 +260,36 @@ function iWasClicked() {
 
 
   else if (this.id == "AC") {
+
+
+    if (currentOperand != ``  && this.id != currentOperand) {
+      prevChoice = document.getElementById(currentOperand);
+      prevChoice.classList.remove("select");
+    }
+
+
+
     num1 = 0;
     num2 = 0;
     num3 = 0;
-    equation == ``;
+    equation = ``;
     firstOperand = ``;
     secondOperand = ``;
     equal = 0;
     first = 0;
     firstNum = 0;
     currentOperand = ``;
+    operatorBox.textContent = currentOperand;
+    equalToggle = 0;
     display.textContent = 0;
+
+
+
+
   }
 
   else if (this.id == "+/-" && equation != ``) {
+    equalToggle = 0;
 
     if (equation > 0) {
     equation = -equation;
@@ -219,6 +304,7 @@ function iWasClicked() {
 
 
   else if (this.id == "+/-" && equation == ``) {
+    equalToggle = 0;
 
     if (num1 > 0) {
     num1 = -num1;
@@ -235,20 +321,30 @@ function iWasClicked() {
   else if (this.id == "%" && equation != ``) {
     equation = equation / 100;
     display.textContent = equation;
+    equalToggle = 0;
   }
 
   else if (this.id == "%" && equation == ``) {
     num1 = num1 / 100;
     display.textContent = num1;
+    equalToggle = 0;
   }
 
   else if (this.id == "NM") {
+    equalToggle = 0;
     activateNightMode();
 
   }
+  enterBug = 1;
 
 }
 
+
+
+let enterBugTwo = 0;
+let enterBug = 0;
+let prevChoice = ``;
+let equalToggle = 0;
 let nmToggle = 0;
 let firstEqual = 0;
 let equal = 0;
@@ -282,7 +378,8 @@ buttons.forEach(button => {
   }
 
   else if (button.id == "AC" || button.id == "+/-" || button.id == "%" || button.id == "NM") {
-    button.style.backgroundColor = "rgba(180, 180, 180, 0.25)";
+    //button.style.backgroundColor = "rgba(180, 180, 180, 0.25)";
+    button.style.backgroundColor = "rgba(180, 180, 180, 0.85)";
     button.style.color = "SteelBlue";
     button.style.fontSize = "20px";
 }});
@@ -329,15 +426,28 @@ function operate(a, b, operand) {
 
 }
 
+const leftCircle = document.querySelector(".left");
+const rightCircle = document.querySelector(".right");
+rightCircle.classList.add("select2");
+
 
 
 const rows = document.querySelectorAll(".row");
 const displayContainer = document.querySelector("#display-container");
 
 
+//border-color: #209467;
+//box-shadow: 0 0 1rem #209467;
+
 function activateNightMode() {
+
   if (nmToggle == 0) {
 
+    bodyColor.style.backgroundColor = "#100000";
+
+    operatorBox.style.color = "white";
+    leftCircle.classList.add("select2");
+    rightCircle.classList.remove("select2");
 
     container.style.backgroundColor = "black";
     container.style.borderColor = "hsl(180, 7%, 51%)";
@@ -377,6 +487,13 @@ function activateNightMode() {
 
     else if (nmToggle == 1) {
 
+      bodyColor.style.backgroundColor = "rgb(255, 239, 213)";
+
+      operatorBox.style.color = "black";
+      rightCircle.classList.add("select2");
+      leftCircle.classList.remove("select2");
+
+
       container.style.backgroundColor = "white";
       container.style.borderColor = "teal";
       displayContainer.style.backgroundColor = "white";
@@ -405,7 +522,8 @@ function activateNightMode() {
       
         else if (button.id == "AC" || button.id == "+/-" || button.id == "%" || button.id == "NM") {
           //button.style.backgroundColor = "teal";
-          button.style.backgroundColor = "rgba(180, 180, 180, 0.25)";
+          //button.style.backgroundColor = "rgba(180, 180, 180, 0.25)";
+          button.style.backgroundColor = "rgba(180, 180, 180, 0.85)";
           button.style.color = "SteelBlue";
           button.style.fontSize = "20px";
       }});
@@ -413,5 +531,249 @@ function activateNightMode() {
       nmToggle = 0;
     }
 
+};
+
+
+
+function addMoon(row) {
+
+  row.style.display = "flex";
+  row.style.justifyContent = "center";
+  row.style.alignItems = "center";
+
+  const circle = document.createElement("div");
+  const left = document.createElement("div");
+  const line = document.createElement("div");
+  const right = document.createElement("div");
+  circle.classList.add("circle");
+  left.classList.add("left");
+  line.classList.add("line");
+  right.classList.add("right");
+  circle.appendChild(left);
+  circle.appendChild(line)
+  circle.appendChild(right)
+  row.appendChild(circle);
+  
+
 }
+
+
+
+const plus = document.getElementById("+");
+const minus = document.getElementById("-");
+const multiplication = document.getElementById("*");
+const division = document.getElementById("/");
+const equals = document.getElementById("=");
+const clear = document.getElementById("AC");
+const nmButton = document.getElementById("NM");
+const percentage = document.getElementById("%");
+const plusMinus = document.getElementById("+/-");
+
+
+window.addEventListener("keydown", (e) => {
+  console.log(e, "HELLO");
+  enterBug = 0;
+
+  /*
+
+  if (equalToggle == 1) {
+
+    num1 = 0;
+    num2 = 0;
+    num3 = 0;
+    firstNum = 0;
+    equal = 0;
+    equalToggle = 0;
+    prevChoice = document.getElementById(currentOperand);
+    prevChoice.classList.remove("select");
+    currentOperand = ``;
+    operatorBox.textContent = currentOperand;
+  }
+  */
+
+  if ((e.keyCode == 48 || e.keyCode == 49 || e.keyCode == 50 || e.keyCode == 51 || e.keyCode == 52 ||
+    e.keyCode == 53 || e.keyCode == 54 || e.keyCode == 55 || e.keyCode == 56 || e.keyCode == 57) 
+    && e.shiftKey == false) {
+
+      if (equalToggle == 1) {
+          num1 = 0;
+          num2 = 0;
+          num3 = 0;
+          firstNum = 0;
+          equal = 0;
+          equalToggle = 0;
+          prevChoice = document.getElementById(currentOperand);
+          prevChoice.classList.remove("select");
+          currentOperand = ``;
+          equation = ``;
+          operatorBox.textContent = currentOperand;
+          equation += e.key;
+          display.textContent = Number(equation);
+
+
+      }
+
+      else {
+
+      equation += e.key;
+      display.textContent = Number(equation);
+      }
+    }
+
+
+    else if (e.keyCode == 190 && equation.split(".").length-1 == 0) {
+      console.log("hello");
+      console.log(equation);
+      equation += e.key;
+      display.textContent = equation;
+
+      if (equalToggle == 1) {
+        num1 = 0;
+        num2 = 0;
+        num3 = 0;
+        equal = 0;
+        firstNum = 0;
+        currentOperand = ``;
+        equalToggle = 0;
+        equation = ``;
+        operatorBox.textContent = currentOperand;
+        equation += e.key;
+        display.textContent = equation;
+      }
+    }
+
+  else if (e.keyCode == 187 && e.shiftKey == false) {
+    plus.click()
+
+  }
+
+  else if (e.keyCode == 189 && e.shiftKey == false) {
+    minus.click();
+  }
+
+  else if (e.shiftKey == true && e.keyCode == 187) {
+    multiplication.click();
+  }
+
+
+  else if (e.shiftKey == true && e.keyCode == 55) {
+    division.click();
+  }
+
+  else if (e.keyCode == 13) {
+    enterBugTwo = 1;
+    equals.click();
+
+  }
+
+  else if (e.keyCode == 67 || e.keyCode == 27) {
+    clear.click();
+  }
+
+  else if (e.shiftKey == true && e.keyCode == 53) {
+    percentage.click();
+  }
+
+  else if (e.shiftKey == true && e.keyCode == 189) {
+    plusMinus.click();
+  }
+
+  else if (e.keyCode == 78) {
+    nmButton.click();
+  }
+
+  else if (e.keyCode == 84) {
+    intervalToggle++;
+
+    if (x.length == 0) {
+
+      x = setInterval(newColors, 200);
+    }
+
+      if (intervalToggle % 2 == 0) {
+        console.log("ok??");
+        clearInterval(x);
+        x = ``;
+
+        if (nmToggle == 0) {
+          nmToggle = 1;
+        }
+
+          else if (nmToggle == 1) {
+            nmToggle = 0;
+          }
+        activateNightMode();
+
+
+      }
+
+
+    //
+    //}
+  console.log("hello there");
+
+  }
+
+
+
+});
+
+let x = ``;
+console.log(x.length, "TEST 1");
+
+/*
+let selectionTrail = `rgba(${redValue}, ${greenValue}, ${blueValue}, ${opacityValue})`;
+
+selectionTrail = `rgba(${redValue}, ${greenValue}, ${blueValue}, ${opacityValue+=0.1})`
+this.style.backgroundColor = selectionTrail;
+
+
+  if (opacityValue.toFixed(1) >= 1.0) {
+    redValue = Math.floor(Math.random() * 256);
+    greenValue = Math.floor(Math.random() * 256);
+    blueValue = Math.floor(Math.random() * 256);
+    opacityValue = 0.0;
+
+*/
+
+
+
+let redValue = Math.floor(Math.random() * 256);
+let greenValue = Math.floor(Math.random() * 256);
+let blueValue = Math.floor(Math.random() * 256);
+let opacityValue = 1.0;
+
+
+let selectionTrail = `rgba(${redValue}, ${greenValue}, ${blueValue}, ${opacityValue})`;
+
+let intervalToggle = 0;
+
+function newColors() {
+
+
+  opacityValue+=0.1;
+  display.style.borderColor = selectionTrail;
+  container.style.borderColor = selectionTrail;
+
+  //if (opacityValue.toFixed(1) >= 1.0) {
+    redValue = Math.floor(Math.random() * 256);
+    greenValue = Math.floor(Math.random() * 256);
+    blueValue = Math.floor(Math.random() * 256);
+    //opacityValue = 0.1;
+    selectionTrail = `rgba(${redValue}, ${greenValue}, ${blueValue}, ${opacityValue})`;
+
+
+  //}
+}
+
+
+
+
+
+
+
+
+
+
+
 
