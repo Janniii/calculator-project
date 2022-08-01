@@ -687,11 +687,13 @@ window.addEventListener("keydown", (e) => {
 
     if (x.length == 0) {
 
+      light.classList.add("on")
       x = setInterval(newColors, 200);
     }
 
       if (intervalToggle % 2 == 0) {
         console.log("ok??");
+        light.classList.remove("on");
         clearInterval(x);
         x = ``;
 
@@ -736,6 +738,8 @@ this.style.backgroundColor = selectionTrail;
 
 */
 
+
+const light = document.querySelector(".light");
 
 
 let redValue = Math.floor(Math.random() * 256);
