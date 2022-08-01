@@ -682,7 +682,7 @@ window.addEventListener("keydown", (e) => {
     nmButton.click();
   }
 
-  else if (e.keyCode == 84) {
+  else if (e.keyCode == 82) {
     intervalToggle++;
 
     if (x.length == 0) {
