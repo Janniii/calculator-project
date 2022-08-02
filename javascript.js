@@ -105,13 +105,20 @@ const operatorBox = document.querySelector(".box");
 buttons.forEach(button => button.addEventListener("click", iWasClicked));
 
 function iWasClicked() {
+
+  document.getElementById(this.id).blur();
+
+
   console.log(this.id);
+
+  /*
 
   if (enterBug == 1 && enterBugTwo == 1) {
     enterBug = 0;
     enterBugTwo = 0;
     return
   }
+  */
 
 
     if ((this.id >= 0 && this.id <= 9) || (this.id == "." && equation.split(".").length-1 == 0)) {
@@ -122,8 +129,10 @@ function iWasClicked() {
         num2 = 0;
         num3 = 0;
         firstNum = 0;
+        if (currentOperand != ``) {
         prevChoice = document.getElementById(currentOperand);
         prevChoice.classList.remove("select");
+      }
         currentOperand = ``;
         operatorBox.textContent = currentOperand;
 
@@ -335,14 +344,14 @@ function iWasClicked() {
     activateNightMode();
 
   }
-  enterBug = 1;
+  //enterBug = 1;
 
 }
 
 
 
-let enterBugTwo = 0;
-let enterBug = 0;
+//let enterBugTwo = 0;
+//let enterBug = 0;
 let prevChoice = ``;
 let equalToggle = 0;
 let nmToggle = 0;
@@ -364,7 +373,7 @@ let equationDisplay = ``;
 let equation = ``;
 
 const display = document.querySelector("#display");
-display.setAttribute("style", "font-size: 30px;")
+display.setAttribute("style", "font-size: 50px;")
 display.textContent = 0;
 
 
@@ -564,6 +573,7 @@ const minus = document.getElementById("-");
 const multiplication = document.getElementById("*");
 const division = document.getElementById("/");
 const equals = document.getElementById("=");
+const dot = document.getElementById(".");
 const clear = document.getElementById("AC");
 const nmButton = document.getElementById("NM");
 const percentage = document.getElementById("%");
@@ -571,8 +581,8 @@ const plusMinus = document.getElementById("+/-");
 
 
 window.addEventListener("keydown", (e) => {
-  console.log(e, "HELLO");
-  enterBug = 0;
+  //ClickityClick(e)
+  //enterBug = 0;
 
   /*
 
@@ -594,6 +604,7 @@ window.addEventListener("keydown", (e) => {
   if ((e.keyCode == 48 || e.keyCode == 49 || e.keyCode == 50 || e.keyCode == 51 || e.keyCode == 52 ||
     e.keyCode == 53 || e.keyCode == 54 || e.keyCode == 55 || e.keyCode == 56 || e.keyCode == 57) 
     && e.shiftKey == false) {
+      ClickityClick(e)
 
       if (equalToggle == 1) {
           num1 = 0;
@@ -602,8 +613,14 @@ window.addEventListener("keydown", (e) => {
           firstNum = 0;
           equal = 0;
           equalToggle = 0;
+          if (currentOperand != ``) {
           prevChoice = document.getElementById(currentOperand);
           prevChoice.classList.remove("select");
+        }
+          //console.log(typeof prevChoice.classList[1]);
+          //if (prevChoice.classList[1] == "select") {
+            //prevChoice.classList.remove("select");
+          //}
           currentOperand = ``;
           equation = ``;
           operatorBox.textContent = currentOperand;
@@ -622,6 +639,8 @@ window.addEventListener("keydown", (e) => {
 
 
     else if (e.keyCode == 190 && equation.split(".").length-1 == 0) {
+      ClickityClick(e);
+          
       console.log("hello");
       console.log(equation);
       equation += e.key;
@@ -661,24 +680,30 @@ window.addEventListener("keydown", (e) => {
   }
 
   else if (e.keyCode == 13) {
-    enterBugTwo = 1;
+    //enterBugTwo = 1;
+    ClickityClick(e)
     equals.click();
+    //ClickityClick(e)
 
   }
 
   else if (e.keyCode == 67 || e.keyCode == 27) {
+    ClickityClick(e)
     clear.click();
   }
 
   else if (e.shiftKey == true && e.keyCode == 53) {
+    ClickityClick(e)
     percentage.click();
   }
 
   else if (e.shiftKey == true && e.keyCode == 189) {
+    ClickityClick(e)
     plusMinus.click();
   }
 
   else if (e.keyCode == 78) {
+    ClickityClick(e)
     nmButton.click();
   }
 
@@ -701,11 +726,10 @@ window.addEventListener("keydown", (e) => {
     if (x.length == 0) {
 
       light.classList.add("on")
-      x = setInterval(newColors, 200);
+      x = setInterval(newColors, 180);
     }
 
       if (intervalToggle % 2 == 0) {
-        console.log("ok??");
         light.classList.remove("on");
         clearInterval(x);
         x = ``;
@@ -725,7 +749,6 @@ window.addEventListener("keydown", (e) => {
 
     //
     //}
-  console.log("hello there");
 
   }
 
@@ -734,7 +757,6 @@ window.addEventListener("keydown", (e) => {
 });
 
 let x = ``;
-console.log(x.length, "TEST 1");
 
 /*
 let selectionTrail = `rgba(${redValue}, ${greenValue}, ${blueValue}, ${opacityValue})`;
@@ -783,6 +805,108 @@ function newColors() {
 
   //}
 }
+
+
+//function simulateClick(el) {
+  //let evt = document.createEvent("MouseEvents");
+  //evt.initMouseEvent("click", true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+  //el.dispatchEvent(evt);
+//}
+
+let hotkeyActive = false;
+function ClickityClick(e) {
+  //if(!hotkeyActive && e.keyCode === 81 || e.keyCode === 56) {
+  if(!hotkeyActive) {
+      hotkeyActive = true;
+      console.log("HELLO", e.key, typeof e.key);
+
+      switch (e.key) {
+        case "Enter":
+          demo = equals;
+          break;
+
+        case ".":
+          demo = dot;
+          break;
+
+        case "c":
+          demo = clear;
+          break;
+        
+        case "Escape":
+          demo = clear;
+          break;
+        
+        case "_":
+          demo = plusMinus;
+          break;
+
+        case "%":
+          demo = percentage;
+          break;
+
+        case "n":
+          demo = nmButton;
+          break;
+
+        
+
+        
+        default:
+          demo = document.getElementById(e.key);
+          break;
+
+
+
+    }
+
+
+
+      
+      console.log("EHM OKAY?");
+      //demo = document.getElementById(e.key);
+
+      console.log(e.key, "heythere");
+      //console.log(demo);
+      //demo.blur();
+      console.log(demo.className);
+      console.log(demo.classList);
+      demo.classList.add("active");
+      console.log(demo.className);
+      console.log(demo.classList);
+      //demo.className = 'active';
+      //demo.setAttribute("type", "button disabled");
+      //demo.blur();
+      var keyupHandler = function (event) {
+          hotkeyActive = false;
+          demo.className = '';
+          //simulateClick(demo);
+          window.removeEventListener('keyup', keyupHandler, false);
+      };
+      window.addEventListener('keyup', keyupHandler, false);
+  }
+}
+
+//var demo = document.getElementById('demo');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
