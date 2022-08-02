@@ -373,7 +373,7 @@ let equationDisplay = ``;
 let equation = ``;
 
 const display = document.querySelector("#display");
-display.setAttribute("style", "font-size: 50px;")
+display.setAttribute("style", "font-size: 30px;")
 display.textContent = 0;
 
 
