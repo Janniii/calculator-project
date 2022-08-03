@@ -895,6 +895,7 @@ function ClickityClick(e) {
   }
 }
 
+
 //var demo = document.getElementById('demo');
 
 
