@@ -322,11 +322,6 @@ let first = 0;
 let num1 = 0;
 let num2 = 0;
 let num3 = 0;
-let result = ``;
-let current = ``;
-let currentResult = ``;
-let equationHidden = ``;
-let equationDisplay = ``;
 let equation = ``;
 
 const display = document.querySelector("#display");
