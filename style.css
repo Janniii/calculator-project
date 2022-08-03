@@ -2,7 +2,6 @@ body {
     display: flex;
     background-color: rgb(255, 239, 213);
     justify-content: center;
-    /*min-height: 100vh;*/
     min-width: auto;
     margin: 0;
     gap: 5px;
@@ -12,9 +11,7 @@ body {
 }
 
 
-
 #container {
-    /*width: 500px*/
     width: 450px;
     height: 600px;
     display: flex;
@@ -32,7 +29,6 @@ body {
 
 
 #display-container {
-    /*width: 500px*/
     width: 450px;
     height: 200px;
     background-color: white;
@@ -44,7 +40,6 @@ body {
 }
 
 #display {
-    /*width: 460px*/
     width: 410px;
     height: 150px;
     background-color: grey; 
@@ -56,21 +51,11 @@ body {
     border-radius: 10px;
     border-color: teal;
     border-width: 5px;
-    /*margin-bottom: 15px;*/
     margin-bottom: 0px;
     flex-shrink: 0;
 
 }
 
-/*
-.select {
-    transform: scale(1.0);
-    border-color: #209467;
-    box-shadow: 0 0 1rem #209467;
-    
-    
-}
-*/
 
 .select {
     transform: scale(1.0);
@@ -78,15 +63,6 @@ body {
     box-shadow: 0 0 1rem #FFFAF0;
 }
 
-/*
-.select2 {
-    transform: scale(1.05);
-    border-color: #209467;
-    box-shadow: 0 0 1rem #209467;
-    
-    
-}
-*/
 
 .select2 {
     transform: scale(1.05);
@@ -135,7 +111,6 @@ body {
 .box {
     width: 30px;
     height: 30px;
-    /*margin-left: -65px;*/
     margin-left: 400px;
     margin-top: 170px;
     font-size: 25px;
@@ -143,16 +118,9 @@ body {
 }
 
 .light {
-    /*
-    width: 15px;
-    height: 15px;
-    */
     width: 11px;
     height: 11px;
-    /*margin-top: 170px; dont use*/
     background-color: #585858;
-    /*margin-left: -420px;*/
-    /*margin-bottom: 3px;*/
     margin-bottom: 179px;
     margin-left: -420px;
     border-radius: 90px;
@@ -169,19 +137,10 @@ body {
 
 
 .light2 {
-    /*
-    width: 15px;
-    height: 15px;
-    */
     width: 11px;
     height: 11px;
-    
-    /*margin-top: 170px; dont use*/
     background-color: #585858;
-    /*margin-left: -370px;*/
     margin-left: -370px;
-    /*margin-bottom: -15px; dont use*/
-    /*margin-bottom: -21px;*/
     margin-bottom: 179px;
     border-radius: 90px;
     border-style: inset;
@@ -195,9 +154,6 @@ body {
     border-color: gold;
     box-shadow: 0 0 1rem gold;
 }
-
-
-
 
 
 .containerLight {
@@ -217,11 +173,7 @@ button.active, button:active {
 
 #legend {
     width: 300px;
-    /*height: 500px;*/
-    /*height: 900px;*/
     height: 619.6px;
-    /*margin-bottom: -363px;*/
-    /*margin-bottom: -774px;*/
     margin-bottom: -496.5px;
     margin-left: -737px;
     display: flex;
@@ -247,7 +199,6 @@ button.active, button:active {
 .key {
     width: 75px;
     height: 45px;
-    /*background-color: teal;*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -258,7 +209,6 @@ button.active, button:active {
 .arrow {
     width: 80px;
     height: 40px;
-    /*background-color: teal;*/
     display: flex;
     justify-content: center;
     align-items: center;
