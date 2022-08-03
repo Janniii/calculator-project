@@ -231,7 +231,7 @@ function iWasClicked() {
     else if (this.id == "=") {
       equalToggle = 1;
 
-      if (currentOperand == ``) {
+      if (currentOperand == `` && equation != ``) {
         num1 = Number(equation);
       }
 
@@ -242,6 +242,10 @@ function iWasClicked() {
         num1 = operate(num1, num2, currentOperand);
         display.textContent = num1;
 
+      }
+
+      else if (equation == `` && equal == 0 && (num1 == 0 && num2 == 0)) {
+        display.textContent = 0;
       }
 
       else if (equation == `` && equal == 0) {
@@ -711,12 +715,14 @@ window.addEventListener("keydown", (e) => {
 
     if (container.className != "containerLight") {
       light2.classList.add("on2")
+      light2.style.borderStyle = "solid";
       container.classList.add("containerLight");
     }
 
     else {
       container.classList.remove("containerLight");
       light2.classList.remove("on2")
+      light2.style.borderStyle = "inset";
     }
   }
 
@@ -726,11 +732,13 @@ window.addEventListener("keydown", (e) => {
     if (x.length == 0) {
 
       light.classList.add("on")
+      light.style.borderStyle = "solid";
       x = setInterval(newColors, 180);
     }
 
       if (intervalToggle % 2 == 0) {
         light.classList.remove("on");
+        light.style.borderStyle = "inset";
         clearInterval(x);
         x = ``;
 

@@ -23,6 +23,7 @@ body {
     border-color: teal;
     border-width: 10px;
     border-radius: 10px;
+    flex-shrink: 0;
     
 }
 
@@ -36,6 +37,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    flex-shrink: 0;
 }
 
 #display {
@@ -51,7 +53,9 @@ body {
     border-radius: 10px;
     border-color: teal;
     border-width: 5px;
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
+    margin-bottom: 0px;
+    flex-shrink: 0;
 
 }
 
@@ -134,13 +138,21 @@ body {
 }
 
 .light {
+    /*
     width: 15px;
     height: 15px;
-    /*margin-top: 170px;*/
+    */
+    width: 11px;
+    height: 11px;
+    /*margin-top: 170px; dont use*/
     background-color: #585858;
+    /*margin-left: -420px;*/
+    /*margin-bottom: 3px;*/
+    margin-bottom: 179px;
     margin-left: -420px;
-    margin-bottom: 3px;
     border-radius: 90px;
+    border-style: inset;
+    position: absolute;
 }
 
 .on {
@@ -152,13 +164,24 @@ body {
 
 
 .light2 {
+    /*
     width: 15px;
     height: 15px;
-    /*margin-top: 170px;*/
+    */
+    width: 11px;
+    height: 11px;
+    
+    /*margin-top: 170px; dont use*/
     background-color: #585858;
+    /*margin-left: -370px;*/
     margin-left: -370px;
-    margin-bottom: -15px;
+    /*margin-bottom: -15px; dont use*/
+    /*margin-bottom: -21px;*/
+    margin-bottom: 179px;
     border-radius: 90px;
+    border-style: inset;
+    position: absolute;
+    
 }
 
 .on2 {
@@ -186,3 +209,65 @@ button.active, button:active {
     box-shadow: 0 0 2px 0 rgb(0,0,0);
 }
 
+
+#legend {
+    width: 300px;
+    /*height: 500px;*/
+    /*height: 900px;*/
+    height: 619.6px;
+    /*margin-bottom: -363px;*/
+    /*margin-bottom: -774px;*/
+    margin-bottom: -496.5px;
+    margin-left: -750px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex-shrink: 0;
+    color: teal;
+    border-color: whitesmoke;
+    border-style: outset;
+    
+}
+
+
+.field {
+    width: 300px;
+    height: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.key {
+    width: 75px;
+    height: 45px;
+    /*background-color: teal;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: groove;
+    border-color: whitesmoke;
+}
+
+.arrow {
+    width: 80px;
+    height: 40px;
+    /*background-color: teal;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+.explain {
+    width: 100px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: groove;
+    border-color: whitesmoke;
+}
