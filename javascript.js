@@ -506,7 +506,7 @@ window.addEventListener("keydown", (e) => {
   
   if ((e.keyCode == 48 || e.keyCode == 49 || e.keyCode == 50 || e.keyCode == 51 || e.keyCode == 52 ||
     e.keyCode == 53 || e.keyCode == 54 || e.keyCode == 55 || e.keyCode == 56 || e.keyCode == 57) 
-    && e.shiftKey == false) {
+    && e.shiftKey == false && e.ctrlKey == false) {
       ClickityClick(e)
 
       if (equalToggle == 1) {
@@ -556,16 +556,16 @@ window.addEventListener("keydown", (e) => {
       }
     }
 
-  else if (e.keyCode == 187 && e.shiftKey == false) {
+  else if (e.keyCode == 187 && e.shiftKey == false && e.ctrlKey == false) {
     plus.click()
 
   }
 
-  else if (e.keyCode == 189 && e.shiftKey == false) {
+  else if (e.keyCode == 189 && e.shiftKey == false && e.ctrlKey == false) {
     minus.click();
   }
 
-  else if (e.shiftKey == true && e.keyCode == 187) {
+  else if (e.shiftKey == true && e.keyCode == 187 && e.ctrlKey == false) {
     multiplication.click();
   }
 
@@ -590,7 +590,7 @@ window.addEventListener("keydown", (e) => {
     percentage.click();
   }
 
-  else if (e.shiftKey == true && e.keyCode == 189) {
+  else if (e.shiftKey == true && e.keyCode == 189 && e.ctrlKey == false) {
     ClickityClick(e)
     plusMinus.click();
   }
