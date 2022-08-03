@@ -135,9 +135,11 @@ body {
 .box {
     width: 30px;
     height: 30px;
-    margin-left: -65px;
+    /*margin-left: -65px;*/
+    margin-left: 400px;
     margin-top: 170px;
     font-size: 25px;
+    position: absolute;
 }
 
 .light {
